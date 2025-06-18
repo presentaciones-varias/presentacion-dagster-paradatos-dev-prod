@@ -1,0 +1,93 @@
+---
+# title: "Identificación de falseamiento ENUSC"
+# author: "Marzo 2024"
+format:
+  revealjs:
+    auto-stretch: false
+    margin: 0
+    slide-number: true
+    scrollable: true
+    preview-links: auto
+    logo: imagenes/logo_portada2.png
+    css: ine_quarto_styles.css
+    # footer: <https://quarto.org>
+---
+
+#
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+<!---
+ <img src="imagenes/logo_portada2.png" style="width: 20%"/>  
+--->
+
+<img src="imagenes/logo_portada2.png" width="20%"/>  
+
+
+[**Dagster Dev / Prod**]{.big-par .center-justified}
+[**Ciencia de Datos**]{.medium-par.center-justified}
+
+[**Junio 2025**]{.big-par .center-justified}
+
+
+
+## [Flujo de Paradatos | Dev / Prod]{.big-par}
+
+::: {.r-stack fragment-index=2 .center}
+
+![](imagenes/workflow/workflow_users_01.png){.fragment .fade-in-then-out width="100%"}
+
+![](imagenes/workflow/workflow_users_02.png){.fragment .fade-in-then-out width="100%"}
+
+:::
+
+
+
+## [Flujo de Paradatos | Dev]{.big-par}
+
+::: {.r-stack fragment-index=2 .center}
+
+![](imagenes/workflow/workflow_users_dev_01.png){.fragment width="100%"}
+
+:::
+
+::: {.incremental .small-par}
+- $ git checkout ENUSC
+- **Hacer cambios, manteniendo estructura de directorio establecida en dagster.** 
+  - [**Se pueden agregar paquetes R a Docker_dev o python a requirements_dev.txt**]{style="color:red;"}
+- $ git add . && git commit -m "some message"
+- $ git push origin ENUSC
+  - **mantiene actualizada branch remota.**
+- $ git push origin ENUSC:dev
+  - **ejecuta runner job en gitlab.**
+- En https://gitlabsdti.ine.cl: 
+  - **revisar que ejecución de runner job sea exitosa.**
+- En http://10.0.40.64 **(si hay cambios en Docker_dev o requirements_dev.txt)**:
+  - [**$ docker compose up -d --build dagster-database-dev dagster-webserver-dev dagster-daemon-dev**]{style="color:red;"}
+- En http://10.0.40.64:3001/deployment/locations:
+  - **reload all (o workflow específico. Ej: etl_enusc, etl_enusc_b).**
+  - **esperar ~60 seg.**
+  - **materialize all / asset específico en workflow.**
+- **revisar cambios en dashboard paradatos hasta estar conforme.**
+- En https://gitlabsdti.ine.cl: 
+  - **crear PR (merge a main).**
+:::
+
+
+
+#
+
+[<img src="imagenes/logo_portada2.png" width="20%"/>]{.center}
+
+[**Dagster Dev / Prod**]{.big-par .center-justified}
+[**Ciencia de Datos**]{.medium-par.center-justified}
+
+[**Junio 2025**]{.big-par .center-justified}
+
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+
+
